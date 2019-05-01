@@ -64,7 +64,7 @@
     color: white;
   }
   
-  /* Adding styles to the aside and filter form */
+  /* Adding styles to the aside and filter forms */
   .rec-form {
     margin-bottom:40px;
   }
@@ -82,17 +82,49 @@
   .filters {
     margin-top: 10px;
   }
+
+  .filters .list-group-bgpink {
+    background-color:rgba(212, 18, 50, 0.767); 
+  }
+
+  .filters .list-group-item {
+    color: black;
+  }
+
+  .checkbox-inline {
+    margin-right: 10px;
+  }
+
+  /* format the button */
+
+  .btn-formatted {
+    align-content:center;
+  }
+
+  /* formatting the table area */
   
-  #table-area th {
+  #tableArea th {
     text-align: center;
   }
   
-  #table-area th:first-child,
-  #table-area th:nth-child(2),
-  #table-area th:nth-child(6) {
-    min-width: 70px;
+  #tableArea th:first-child,
+  #tableArea td:nth-child(1),
+  #tableArea td:nth-child(2),
+  #tableArea td:nth-child(4) {
+    width: 20%;
+  }
+
+  #tableArea td:nth-child(3),
+  #tableArea td:nth-child(5){
+    width: 10%;
+  }
+
+  #tableArea td {
+    overflow: auto;
   }
   
+  /* margin specs */
+
   .margin-top-50 {
     margin-top: 50px;
   }
@@ -155,27 +187,28 @@
   
   /* media queries which will only be activated at specific screen sizes */
   @media (max-width: 800px) {
-    #table-area td {
+     #tableArea td {
       font-size: 1em;
+      overflow: auto;
     }
   }
   
   @media (max-width: 500px) {
-    #table-area thead {
+     #tableArea thead {
       display: none;
     }
   
-    #table-area tr td:first-child {
+     #tableArea tr td:first-child {
       font-size: 1.8em;
       font-weight: bold;
-      background: #1b3146;
+      background: rgb(7, 20, 97);
     }
   
-    #table-area tr td:last-child {
+     #tableArea tr td:last-child {
       margin-bottom: 20px;
     }
   
-    #table-area tr td:last-child::after {
+     #tableArea tr td:last-child::after {
       display: block;
       width: 100%;
       height: 1px;
@@ -184,16 +217,17 @@
       background: aliceblue;
     }
   
-    #table-area td {
+     #tableArea td {
       font-size: 1.25em;
+      overflow: auto;
     }
   
-    #table-area tbody td {
+     #tableArea tbody td {
       display: block;
       text-align: center;
     }
   
-    #table-area tbody td::before {
+     #tableArea tbody td::before {
       display: block;
       font-size: 1.4em;
       font-weight: bold;

@@ -21,10 +21,12 @@
         </div>
       </div>
     </nav>
+    <!-- this is the top header -->
     <div class="hero text-center">
       <h1>Recipeadia</h1>
       <p>For your cooking pleasure</p>
     </div>
+    <!-- this is the blurb explaining the search -->
     <div class = "container">
       <div class = "row margin-top-20">
         <div class="col-md-12" style = "margin-top:20px">
@@ -33,7 +35,8 @@
       </div>
     </div>
     <div class="container">
-      <div class="row ">
+      <div class="row">
+        <!-- this is ingredient search -->
         <div class="col-md-4">
           <aside class="filters">
             <div class="panel panel-default">
@@ -45,26 +48,26 @@
                     <hr>
                   <div class="form-group">
                     <ul class="list-group" id="ingredientfilters" style="color:rgb(234, 232, 235);">
-                      <li class="filter list-group-item" style="background-color:rgba(212, 18, 50, 0.767); color:black">
+                      <li class="filter list-group-item list-group-bgpink">
                         <label for="date">Enter an ingredient (optional)</label>
                         <input class="form-control" id="datetime" type="text" placeholder="onion">
                       </li>
-                      <li class="filter list-group-item" style="color:black">
+                      <li class="filter list-group-item">
                         <label for="city">Enter an ingredient (optional)</label>
                         <input class="form-control" id="city" type="text" placeholder="potato">
                       </li>
-                      <li class="filter list-group-item" style="background-color:rgba(212, 18, 50, 0.767); color:black">
+                      <li class="filter list-group-item list-group-bgpink">
                         <label for="state">Enter an ingredient (optional)</label>
                         <input class="form-control" id="state" type="text" placeholder="salmon">
                       </li>
                     </ul>
                   </div>
-                  <!-- <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button> -->
                 </form>
               </div>
             </div>
           </aside>
         </div>
+        <!-- this is Diet search -->
         <div class="col-md-4">
             <aside class="filters">
               <div class="panel panel-default">
@@ -76,24 +79,25 @@
                     <hr>
 
                       <ul class="list-group" id="dietfilters" style="color:rgb(7, 20, 97);">
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="pork">No Pork</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="chicken">No Chicken</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="beef">No Beef</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="milk">No Milk</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="cheese">No Cheese</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="butter">No Butter</label>                      
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="eggs">No Eggs</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="sugar">No Sugar</label>                       
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="peanuts">No Peanuts</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="walnuts">No Walnuts</label>                    
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="almonds">No Almonds</label>
-                          <label class="checkbox-inline" style="margin-right: 10px"><input type="checkbox" value="" id="cashews">No Cashews</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="pork">No Pork</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="chicken">No Chicken</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="beef">No Beef</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="milk">No Milk</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="cheese">No Cheese</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="butter">No Butter</label>                      
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="eggs">No Eggs</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="sugar">No Sugar</label>                       
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="peanuts">No Peanuts</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="walnuts">No Walnuts</label>                    
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="almonds">No Almonds</label>
+                          <label class="checkbox-inline"><input type="checkbox" value="" id="cashews">No Cashews</label>
                       </ul>
                   </form>
                 </div>
               </div>
             </aside>
           </div>
+          <!-- this is duration search -->
           <div class="col-md-4">
             <aside class="filters">
               <div class="panel panel-default">
@@ -105,28 +109,27 @@
                     <hr>
                     <div class="form-group">
                       <ul class="list-group" id="durfilter" style="color:rgb(234, 232, 235);">
-                        <li class="filter list-group-item" style="background-color:rgba(212, 18, 50, 0.767); color:black">
+                        <li class="filter list-group-item list-group-bgpink">
                           <label for="date">Enter a duration (# d # h # m)</label>
                           <input class="form-control" id="duration" type="text" placeholder="0 h 0 d 45 m">
                         </li>
                       </ul>
                     </div>
-                    <!-- <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button> -->
                   </form>
                 </div>
               </div>
             </aside>
           </div>
-          <div class = "col-md-5"></div>
-          <div class = "col-md-2">
-              <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
+          <!-- this is the button -->
+          <div class = "col-md-12 text-center">
+              <button type="button" class="btn btn-primary btn-lg" style="margin-bottom:20px;background-color:rgb(7, 20, 97);border-color:rgb(7, 20, 97)">Get Results</button>
           </div>
-          <div class = "col-md-5"></div>
-                                        <!-- <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button> -->
+
+          <!-- this is the table -->
         <div class="col-md-12">
           <hr class="blue">
           <hr class="pink">
-          <div id="table-area" class="">
+          <div id="tableArea" class="">
             <table id="recTable" class="table table-striped table-dark">
               <thead>
                 <tr>
