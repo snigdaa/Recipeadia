@@ -1,5 +1,5 @@
-// from data.js
-var sightings = data;
+// from recipeJS.js
+var entries = recipeData;
 
 // YOUR CODE HERE!
 

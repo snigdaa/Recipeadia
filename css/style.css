@@ -10,6 +10,11 @@
     margin: 0;
   }
 
+  /* style text for the whole page */
+  .font-change {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
   /* format the horizontal lines that separate filter searches from the results table */
   
   .pink {
@@ -58,7 +63,7 @@
   /* This CSS styles the ufo icon in the navbar */
   .nav-salad {
     position: absolute;
-    bottom: 11px;
+    bottom: 8px;
     left: 123px;
     width: 35px;
     color: white;
@@ -147,6 +152,7 @@
     font-size: 0.1rem;
     animation: title 1.2s forwards linear;
     opacity:1;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     color:rgb(7, 20, 97);
     -webkit-text-stroke-color:aliceblue;
      -webkit-text-stroke-width:3px;
