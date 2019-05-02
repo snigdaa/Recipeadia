@@ -31,6 +31,7 @@
       <div class = "row margin-top-20">
         <div class="col-md-12" style = "margin-top:20px">
           <p class = "text-center" style="color:rgba(212,18,50);">Search recipes from a database of over 10,000 recipes by using either ingredient search, dietary restriction search, duration search, or any and all of them!</p>
+          <p class = "text-center" style="color:rgb(7, 20, 97);font-weight: bold;text-decoration: underline">Click "Add Query" under each form you choose to use in order to add it to your query, then click "Get Results" to find all your recipes!</p>
         </div>
       </div>
     </div>
@@ -44,12 +45,12 @@
               <div class="panel-heading" >Ingredient Search</div>
               <hr class = "blue">
               <div class="panel-body">
-                <form class="rec-form">
+                <form class="rec-form" style = "text-align:center">
                     <hr>
                   <div class="form-group">
                     <ul class="list-group" id="ingredientfilters" style="color:rgb(234, 232, 235);">
                       <li class="filter list-group-item list-group-bgpink">
-                        <label for="date">Enter an ingredient (optional)</label>
+                        <label for="date">Enter an ingredient</label>
                         <input class="form-control" id="datetime" type="text" placeholder="onion">
                       </li>
                       <li class="filter list-group-item">
@@ -62,6 +63,7 @@
                       </li>
                     </ul>
                   </div>
+                  <button id="filterBtnIng" type="submit" class="btn btn-outline-primary">Add Query</button>
                 </form>
               </div>
             </div>
@@ -92,6 +94,7 @@
                           <label class="checkbox-inline"><input type="checkbox" value="" id="almonds">No Almonds</label>
                           <label class="checkbox-inline"><input type="checkbox" value="" id="cashews">No Cashews</label>
                       </ul>
+                      <button id="filterBtnDiet" type="submit" class="btn btn-outline-primary">Add Query</button>
                   </form>
                 </div>
               </div>
@@ -105,7 +108,7 @@
                 <div class="panel-heading" >Duration Search</div>
                 <hr class="blue">
                 <div class="panel-body">
-                  <form class = "rec-form">
+                  <form class = "rec-form" style = "text-align:center">
                     <hr>
                     <div class="form-group">
                       <ul class="list-group" id="durfilter" style="color:rgb(234, 232, 235);">
@@ -115,14 +118,18 @@
                         </li>
                       </ul>
                     </div>
+                    <button id="filterBtnDur" type="submit" class="btn btn-outline-primary">Add Query</button>
                   </form>
                 </div>
               </div>
             </aside>
           </div>
-          <!-- this is the button -->
+          <!-- this is the main button -->
           <div class = "col-md-12 text-center">
-              <button type="button" class="btn btn-primary btn-lg" style="margin-bottom:20px;background-color:rgb(7, 20, 97);border-color:rgb(7, 20, 97)">Get Results</button>
+              <button type="button" class="btn btn-primary btn-lg" id = "filterButt"
+              style="margin-bottom:20px;background-color:rgb(7, 20, 97);border-color:rgb(7, 20, 97)">
+              Get Results
+            </button>
           </div>
 
           <!-- this is the table -->
