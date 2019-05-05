@@ -3,13 +3,8 @@ var entries = recipeData;
 
 var searchDict = {};
 
-// go through recipeData and make all ingredient arrays into actual arrays
-totData = [];
-entries.forEach(element => {
-  // element["Ingredients"] = element["Ingredients"].slice(1, -1);
-  // console.log(totData)
-  // console.log(element["Ingredients"])
-});
+// define the variable to hold final table data
+var totData = [];
 
 //function we will use for ingredient search
 function searchIngredients(searchTerms, entryArray) {
@@ -141,30 +136,86 @@ filterClick.on("click", function(){
   
   // if duration is used in search, it will execute the following
   if (searchDict.Duration) {
-    console.log(searchDict.Duration)
-
     var tempTable = [];
 
     //get modified tables if applicable
     if (dietTable.length > 0) {tempTable = dietTable}
     else if (ingTable.length > 0) {tempTable = ingTable}
+    else {tempTable = entries};
 
     var days, hours, mins;
+    var dMin, hMin;
+    if (searchDict.Duration.days) {
+      days = searchDict.Duration.days[0];
+      dMin = parseInt(days) * 1440;
+    }
+    else { dMin = 0;}
 
-    if (searchDict.Duration.days) {days = searchDict.Duration.days}
-    if (searchDict.Duration.hours) {hours = searchDict.Duration.hours}
-    if (searchDict.Duration.mins) {mins = searchDict.Duration.mins}
+    if (searchDict.Duration.hours) {
+      hours = searchDict.Duration.hours[0];
+      hMin = parseInt(hours) * 60;
+    }
+    else { hMin = 0; }
 
+    if (searchDict.Duration.mins) {
+      mins = parseInt(searchDict.Duration.mins[0]);
+    }
+    else { mins = 0; }
+
+    // console.log(dMin, hMin, mins);
+    var searchTimeInMinutes = dMin + hMin + mins;
+    // console.log(searchTimeInMinutes);
+    
     var entryDur;
-    tempTable.forEach(entry => {
+    for (var entry of tempTable) {
       entryDur = entry['Duration'];
-      if (entryDur.contains("d")) {
-        
+      var entryDays, entryHours, entryMinutes;
+      if (entryDur=="X" || entryDur==null){
+        break;
       }
-    })
+      if (entryDur.includes("d")) {
+        var d = entryDur.indexOf("d");
+        entryDays = parseInt(entryDur.substring(d-3,d));
+      }
+      if (entryDur.includes("h")) {
+        var h = entryDur.indexOf("h");
+        entryHours = parseInt(entryDur.substring(h-3,h));
+      }
+      if (entryDur.includes("m")) {
+        var m = entryDur.indexOf("m");
+        entryMinutes = parseInt(entryDur.substring(m-3,m));
+      }
+      var entryTimeInMinutes = entryDays * 1440 + entryHours * 60 + entryMinutes;
+      // console.log(entryTimeInMinutes);
+      if (entryTimeInMinutes <= searchTimeInMinutes) {
+        durTable.push(entry);
+      }
+      entryDays = 0;
+      entryHours = 0;
+      entryMinutes = 0;
+    }
+    console.log(durTable);
   }
+  //get the final total table if they entered multiple forms
+  if (durTable.length > 0) {
+    totData = durTable;
+  }
+  else if (dietTable.length > 0) {
+    totData = dietTable;
+  }
+  else if (ingTable.length > 0) {
+    totData = ingTable;
+  }
+  else { totData = [];}
+}) //end filter click handling (Get Results button)
 
-})
+// ***table data is stored in totData ***
+
+
+
+
+
+// BELOW IS CODE FROM MY HW YOU CAN IGNORE IT OR USE IT TO MAKE TABLES IF THAT'S EASIER 
 
 // filterClick.on("click", function() {
 //       //it won't refresh
