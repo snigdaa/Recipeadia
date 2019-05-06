@@ -108,8 +108,14 @@
 
   /* formatting the table area */
   
-  #tableArea th {
+  #tableArea th thead {
     text-align: center;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 999;
+    background-color: rgb(7, 20, 97);
+    color: #fff;
   }
 
   table {

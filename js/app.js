@@ -216,10 +216,21 @@ filterClick.on("click", function(){
   // Build table based on totData
   var tbody = d3.select("tbody");
 
+  var counter = 0;
+  var tableClass;
   // Loop through totData and add a row for each entry
   totData.forEach(entry => {
 
-    var row = tbody.append("tr").attr("class", "table-primary").attr("style", "color:rgb(7, 20, 97); height: 2em");
+    if (counter == 0) {
+      counter = 1;
+      tableClass = "table-primary";
+    }
+    else {
+      counter = 0;
+      tableClass = "table-light";
+    }
+
+    var row = tbody.append("tr").attr("class", tableClass).attr("style", "color:rgb(7, 20, 97); height: 2em");
 
     //photo
     if(entry["Recipe Photo"].substring(0,5) == "https") {
