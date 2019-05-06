@@ -238,7 +238,7 @@ filterClick.on("click", function(){
     else {
       var imgLink = "https://s3.amazonaws.com/pix.iemoji.com/images/emoji/apple/ios-12/256/face-savouring-delicious-food.png" }
 
-    row.append("td").html("<img src=" + imgLink + " height='95' width='120'>")
+    row.append("td").html("<img src=" + imgLink + " height='105' width='120'>")
 
     //recipe
     row.append("td").text(entry["Recipe Name"]);
