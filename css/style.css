@@ -111,17 +111,22 @@
   #tableArea th {
     text-align: center;
   }
+
+  table {
+    /* width: 500px; */
+    table-layout:fixed;
+  }
   
   #tableArea th:first-child,
   #tableArea td:nth-child(1),
   #tableArea td:nth-child(2),
+  #tableArea td:nth-child(5),
   #tableArea td:nth-child(4) {
-    width: 20%;
+    width: 10%;
   }
 
-  #tableArea td:nth-child(3),
-  #tableArea td:nth-child(5){
-    width: 10%;
+  #tableArea td:nth-child(3) {
+    width: 5%
   }
 
   #tableArea td {
@@ -196,7 +201,7 @@
      #tableArea td {
       font-size: 1em;
       overflow: auto;
-    }
+    } 
   }
   
   @media (max-width: 500px) {
