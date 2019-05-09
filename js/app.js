@@ -30,6 +30,7 @@ function searchIngredients(searchTerms, entryArray) {
       //reset found
       found = false;
     } //ends looping through each search term
+
     //if all the terms in the search array are true then conditional will be true, and we'll save the recipe
     console.log(hasFound)
     if(hasFound.every(Boolean)){
@@ -102,6 +103,34 @@ durClick.on("click", function() {
 var filterClick = d3.select("#filterButt");
 filterClick.on("click", function(){
   console.log(searchDict);
+
+  // Remove existing table, if there is one
+  d3.select("#dataTable").remove();
+
+  //reset the form inputs
+  d3.select("#days").node().value = "";
+  d3.select("#hours").node().value = "";
+  d3.select("#mins").node().value = "";
+
+  d3.select("#pork").node().checked = false;
+  d3.select("#chicken").node().checked = false;
+  d3.select("#beef").node().checked = false;
+  d3.select("#milk").node().checked = false;
+  d3.select("#cheese").node().checked = false;
+  d3.select("#butter").node().checked = false;
+  d3.select("#eggs").node().checked = false;
+  d3.select("#sugar").node().checked = false;
+  d3.select("#peanuts").node().checked = false;
+  d3.select("#walnuts").node().checked = false;
+  d3.select("#almonds").node().checked = false;
+  d3.select("#cashews").node().checked = false;
+
+  d3.select("#ing1").node().value = "";
+  d3.select("#ing2").node().value = "";
+  d3.select("#ing3").node().value = "";  
+
+  //set a master table which we will keep splicing from in each button's chunk
+  var masterTable = entries;
   
   var ingTable = [], durTable = [], dietTable = [];
   // if ingredients are used in search, it will execute the following
@@ -112,36 +141,36 @@ filterClick.on("click", function(){
     if (searchDict.Ing3) {searchArray.push(searchDict.Ing3[0].toLowerCase());}
     
     //refer to function start on line 15
-    ingTable = searchIngredients(searchArray, entries);
-    console.log(ingTable);
+    ingTable = searchIngredients(searchArray, masterTable);
+    masterTable = ingTable;
+    console.log(masterTable);
   }
 
   // if dietary restrictions are used, it will execute the following
   if (searchDict.Restrictions) {
-    var tempTable = [];
+    //set table equal to masterTable which would have already been modified if ingSearch was used, not modified if it wasn't used
+    dietTable = masterTable;
+    // var tempTable = [];
     var restrictions = searchDict.Restrictions;
-    //use modified table if we have it, otherwise use total data
-    if (ingTable.length > 0) {tempTable = ingTable}
-    else {tempTable = entries}
+    for (var idx = 0; idx < dietTable.length; idx++){
+        for (var restrict of restrictions) {
+            if (dietTable[idx][restrict]) {
+                dietTable.splice(idx, 1);
+                idx--;
+                break;
+            }
+        }
+    }
 
-    tempTable.forEach(element => {
-      for (var restrict of restrictions) {
-        if (element[restrict]) {break;}
-      } //end looping through each restrictions
-      //if none of the restrictions are triggered, keep the recipe
-      dietTable.push(element);
-    })
-    console.log(dietTable)
+    masterTable = dietTable;
+    console.log(masterTable);
   }
   
   // if duration is used in search, it will execute the following
   if (searchDict.Duration) {
-    var tempTable = [];
 
-    //get modified tables if applicable
-    if (dietTable.length > 0) {tempTable = dietTable}
-    else if (ingTable.length > 0) {tempTable = ingTable}
-    else {tempTable = entries};
+    //set the temp modifying table to masterTable
+    durTable = masterTable;
 
     var days, hours, mins;
     var dMin, hMin;
@@ -162,55 +191,57 @@ filterClick.on("click", function(){
     }
     else { mins = 0; }
 
-    // console.log(dMin, hMin, mins);
     var searchTimeInMinutes = dMin + hMin + mins;
-    // console.log(searchTimeInMinutes);
+    console.log("search Time: " + searchTimeInMinutes);
     
     var entryDur;
-    for (var entry of tempTable) {
-      entryDur = entry['Duration'];
-      var entryDays, entryHours, entryMinutes;
-      if (entryDur=="X" || entryDur==null){
-        break;
-      }
-      if (entryDur.includes("d")) {
-        var d = entryDur.indexOf("d");
-        entryDays = parseInt(entryDur.substring(d-3,d));
-      }
-      if (entryDur.includes("h")) {
-        var h = entryDur.indexOf("h");
-        entryHours = parseInt(entryDur.substring(h-3,h));
-      }
-      if (entryDur.includes("m")) {
-        var m = entryDur.indexOf("m");
-        entryMinutes = parseInt(entryDur.substring(m-3,m));
-      }
-      var entryTimeInMinutes = entryDays * 1440 + entryHours * 60 + entryMinutes;
-      // console.log(entryTimeInMinutes);
-      if (entryTimeInMinutes <= searchTimeInMinutes) {
-        durTable.push(entry);
-      }
-      entryDays = 0;
-      entryHours = 0;
-      entryMinutes = 0;
-    }
-    console.log(durTable);
-  }
-  //get the final total table if they entered multiple forms
-  if (durTable.length > 0) {
-    totData = durTable;
-  }
-  else if (dietTable.length > 0) {
-    totData = dietTable;
-  }
-  else if (ingTable.length > 0) {
-    totData = ingTable;
-  }
-  else { totData = [];}
+    for (var j = 0; j < durTable.length; j++) {
+        entryDur = durTable[j]["Duration"];
+        console.log("entryDur: " + entryDur)
 
-// Remove existing table, if there is one
+        var entryDays, entryHours, entryMinutes;
+        if (entryDur=="X" || entryDur==""){
+            entryTimeInMinutes = "nan";
+        }
+        else {
+            if (entryDur.includes("d")) {
+                var d = entryDur.indexOf("d");
+                entryDays = parseInt(entryDur.substring(0,d));
+            }
+            if (entryDur.includes("h")) {
+                var h = entryDur.indexOf("h");
+                entryHours = parseInt(entryDur.substring(h-3,h));
+            }
+            if (entryDur.includes("m")) {
+                var m = entryDur.indexOf("m");
+                entryMinutes = parseInt(entryDur.substring(m-3,m));
+            }
+            var entryTimeInMinutes = entryDays * 1440 + entryHours * 60 + entryMinutes;
+        }  
+
+        if (isNaN(entryTimeInMinutes)) {
+            entryTimeInMinutes = "nan";
+        }
+        console.log("entryTime: " + entryTimeInMinutes)
+        //check if the entry is greater than the searchDuration or if it was not applicable
+        if (entryTimeInMinutes > searchTimeInMinutes || entryTimeInMinutes == "nan") {
+            durTable.splice(j, 1);
+            j--;
+        }
+        //reset entry value checkers
+        entryDays = 0;
+        entryHours = 0;
+        entryMinutes = 0;  
+    }
+
+    masterTable = durTable;
+    console.log(masterTable)
+  }
+
+//set totData equal to manipulated masterTable
+  totData = masterTable;
+
   // Replace the table body in order to append new swearch information
-  d3.select("#dataTable").remove();
   d3.select("#recTable").append("tbody").attr("id","dataTable");
   
   // Build table based on totData
